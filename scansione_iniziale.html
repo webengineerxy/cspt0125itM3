@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 1: Scansione Iniziale (Nessus) - Progetto M3 CyberSecurity 2025 Epicode - Salvatore Saitta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .content-section, .results-section, .conclusion-section {
+            background-color: #f9fafb;
+            border-left: 4px solid #3b82f6; /* Blue accent */
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .conclusion-section {
+            background-color: #eff6ff; 
+            border-left-color: #10b981; 
+        }
+        .nav-button {
+            @apply inline-block bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-colors duration-300 shadow-sm mr-2 mb-2;
+        }
+        .screenshot-image {
+            border: 1px solid #e5e7eb; 
+            border-radius: 8px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .inline-theme-image { 
+            max-width: 150px; 
+            float: right; 
+            margin-left: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        table {
+            @apply min-w-full divide-y divide-gray-200 mt-4;
+        }
+        thead {
+            @apply bg-gray-50;
+        }
+        th {
+            @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        }
+        td {
+            /* Rimosso whitespace-nowrap per permettere a capo nelle celle */
+            @apply px-6 py-4 text-sm text-gray-900 bg-white;
+        }
+        tbody tr:nth-child(odd) td {
+            @apply bg-gray-50;
+        }
+        .justified-text p, .justified-text ul, .justified-text ol, .justified-text li {
+            @apply text-justify;
+        }
+        .table-description-cell { 
+            @apply text-justify whitespace-normal; 
+        }
+        .severity-critical { @apply text-red-700 font-bold; }
+        .severity-high { @apply text-red-500 font-semibold; }
+        .severity-medium { @apply text-yellow-500 font-semibold; }
+        /* Aggiungere altri stili per severità se necessario */
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 leading-relaxed">
+
+    <header class="bg-blue-600 text-white p-6 shadow-lg">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold text-center">Fase 1: Scansione Iniziale & Analisi Rischi (con Nessus Essentials)</h1>
+            <p class="text-lg text-center mt-1">Progetto M3 CyberSecurity 2025 Epicode - Dott. Edoardo Castelli</p>
+            <p class="text-md text-center mt-1">Autore: Salvatore Saitta</p>
+        </div>
+    </header>
+
+    <nav class="container mx-auto p-4 my-4 text-center">
+        <a href="index.html" class="nav-button">Torna alla Home</a>
+        <a href="remediation.html" class="nav-button">Vai alla Fase 2: Remediation</a>
+        <a href="scansione_finale.html" class="nav-button">Vai alla Fase 3: Scansione Finale</a>
+    </nav>
+
+    <main class="container mx-auto p-6">
+
+        <section id="premessa-fase1" class="content-section justified-text">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-700">Premessa alla Scansione Iniziale con Nessus</h2>
+            <div class="space-y-3 text-md">
+                <p>Dott. Castelli, benvenuto nella prima fase operativa del nostro progetto di hardening per Metasploitable 2! Data la recente instabilità segnalata dalla comunità di Parrot OS riguardo l'installazione di OpenVAS/GVM, abbiamo optato per una soluzione altrettanto potente e rinomata nel settore: **Nessus Essentials** di Tenable. Questo ci garantirà affidabilità e risultati dettagliati per la nostra analisi.</p>
+                <p>L'ambiente di test, che vede Parrot OS come nostra piattaforma di analisi e Metasploitable 2 su VirtualBox come "paziente", è stato configurato per operare in una rete Host-Only isolata, garantendo che le nostre attività di scansione non abbiano impatti esterni e si svolgano in un contesto controllato.</p>
+                <p>In questa sezione, documenterò l'installazione e la configurazione di Nessus Essentials su Parrot OS, la creazione del target di scansione e l'avvio della policy "Basic Network Scan". L'obiettivo è raccogliere dati grezzi ma fondamentali: quali porte sono aperte, quali servizi sono in ascolto e, soprattutto, quali vulnerabilità note affliggono queste configurazioni. I risultati che emergeranno costituiranno la nostra "mappa dei rischi" per pianificare gli interventi di remediation nella fase successiva.</p>
+                <p>Pronti a vedere cosa ci rivelerà Nessus?</p>
+            </div>
+        </section>
+
+        <section id="configurazione-ambiente-strumenti" class="content-section justified-text">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-700">1. Configurazione Ambiente e Strumenti (Nessus Essentials)</h2>
+            <div class="space-y-3 text-md">
+                <h3 class="text-xl font-semibold mt-3 mb-2 text-blue-600">1.1 Ambiente di Laboratorio Virtuale</h3>
+                <p>Per questo esercizio, è stato allestito un ambiente virtuale controllato utilizzando:</p>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li><strong>Macchina Attaccante/Scanner:</strong> Parrot OS (versione 6.3), in esecuzione come macchina virtuale su Oracle VirtualBox. IP: 192.168.56.1.</li>
+                    <li><strong>Macchina Target:</strong> Metasploitable 2, importata come macchina virtuale su Oracle VirtualBox. IP: 192.168.56.1.</li>
+                    <li><strong>Rete Virtuale:</strong> Entrambe le VM sono state configurate per utilizzare una rete "Host-Only Adapter" (`vboxnet0`) di VirtualBox, garantendo connettività reciproca sulla subnet [Es. 192.168.56.0/24] e isolamento dalla rete esterna.</li>
+                </ul>
+
+
+                <h3 class="text-xl font-semibold mt-3 mb-2 text-blue-600">1.2 Installazione e Configurazione di Nessus Essentials</h3>
+                <p>Su Parrot OS, è stato installato e configurato Nessus Essentials. I passaggi chiave sono stati:</p>
+                <ol class="list-decimal list-inside ml-4 space-y-1">
+                    <li><strong>Download Nessus:</strong> Scaricato il pacchetto `.deb` di Nessus Essentials per Debian/Ubuntu (architettura amd64) dal sito ufficiale Tenable, previa registrazione per ottenere un codice di attivazione.</li>
+                    <li><strong>Installazione:</strong> Installato il pacchetto tramite `sudo dpkg -i</li>
+                    <li><strong>Avvio Servizio:</strong> Avviato il servizio Nessus con `sudo /bin/systemctl start nessusd.service`.</li>
+                    <li><strong>Configurazione Web Iniziale:</strong> Accesso a `https://localhost:8834` tramite browser.
+                        <ul class="list-disc list-inside ml-6">
+                            <li>Selezione di "Nessus Essentials".</li>
+                            <li>Inserimento del codice di attivazione ricevuto via email.</li>
+                            <li>Creazione di un account amministratore per Nessus (username e password).</li>
+                            <li>Attesa del download e compilazione dei plugin (processo che richiede tempo).</li>
+                        </ul>
+                        
+                    </li>
+                    <li><strong>Creazione della Scansione:</strong>
+                        <ul class="list-disc list-inside ml-6">
+                            <li>Dalla dashboard di Nessus, clic su "New Scan".</li>
+                            <li>Selezione del template "Basic Network Scan".</li>
+                            <li><strong>Settings:</strong> Nome: `SCAN_INIZIALE_Metasploitable2_M3`, Targets: 192.168.56.1.</li>
+                            <li><strong>Discovery:</strong> Port scan su "All ports".</li>
+                            <li>Salvataggio e avvio ("Launch") della scansione.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="risultati-scansione-iniziale" class="results-section justified-text">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-700">2. Risultati della Scansione Iniziale con Nessus</h2>
+            <div class="space-y-3 text-md">
+                <p>La scansione "Basic Network Scan" è stata completata in 20 minuti. Di seguito, il riepilogo grafico delle vulnerabilità rilevate e una tabella con i dettagli delle principali criticità (Critical/High) identificate da Nessus.</p>
+                
+                <h3 class="text-xl font-semibold mt-3 mb-2 text-blue-600">2.1 Riepilogo Grafico (Dashboard Nessus)</h3>
+                <img src="assets/images/nessus_dashboard_summary1.png" alt="Riepilogo Vulnerabilità Dashboard Nessus" class="screenshot-image">
+                <img src="assets/images/nessus_dashboard_summary2.png" alt="Riepilogo Vulnerabilità Dashboard Nessus" class="screenshot-image">
+                <img src="assets/images/nessus_dashboard_summary3.png" alt="Riepilogo Vulnerabilità Dashboard Nessus" class="screenshot-image">
+                <img src="assets/images/top.png" alt="Riepilogo Vulnerabilità Dashboard Nessus" class="screenshot-image">
+
+                <h3 class="text-xl font-semibold mt-3 mb-2 text-blue-600">2.2 Dettaglio Vulnerabilità Critical/High Rilevanti</h3>
+                <p>Dalla scansione sono emerse 10 vulnerabilità "Critical" e 6 vulnerabilità "High". Di seguito, una selezione delle più significative, alcune di queste saranno oggetto della successiva fase di remediation:</p>
+                
+                 <img src="assets/images/vulnerabilità1.png" alt="Dettaglio Vulnerabilità Nessus" class="screenshot-image">
+                 <img src="assets/images/vulnerabilità2.png" alt="Dettaglio Vulnerabilità Nessus" class="screenshot-image">
+                 <img src="assets/images/vulnerabilità3.png" alt="Dettaglio Vulnerabilità Nessus" class="screenshot-image">
+                 <img src="assets/images/vulnerabilità4.png" alt="Dettaglio Vulnerabilità Nessus" class="screenshot-image">
+                 <img src="assets/images/vulnerabilità6.png" alt="Dettaglio Vulnerabilità Nessus" class="screenshot-image">
+                 <img src="assets/images/vulnerabilità7.png" alt="Dettaglio Vulnerabilità Nessus" class="screenshot-image">
+                 <img src="assets/images/vulnerabilità8.png" alt="Dettaglio Vulnerabilità Nessus" class="screenshot-image">
+
+                </div>
+        </section>
+
+        <section id="conclusioni-fase1" class="conclusion-section justified-text">
+            <h2 class="text-2xl font-semibold mb-4 text-green-700">Conclusioni della Scansione Iniziale (Nessus)</h2>
+            <div class="space-y-3 text-md">
+                <p>Dott. Castelli, l'analisi dei risultati della scansione effettuata con Nessus Essentials sulla macchina Metasploitable 2 ha confermato, come previsto, una significativa esposizione a rischi di sicurezza. </p>
+                <p>Questa situazione indica una superficie d'attacco estremamente ampia. La presenza di servizi obsoleti, configurazioni di default insicure (come password deboli), sistemi operativi non più supportati e backdoors note, espone la macchina a un rischio di compromissione completo. Le vulnerabilità identificate da Nessus, in particolare quelle "Critical" e "High", richiedono un intervento prioritario.</p>
+                <p>Sulla base di questa approfondita analisi iniziale, la fase successiva del progetto si focalizzerà sull'implementazione di azioni di rimedio mirate. Verranno selezionate le quattro vulnerabilità principali sopra dettagliate (NFS, rexecd, VNC e Bind Shell, o i loro equivalenti identificati da Nessus) per l'applicazione di specifiche contromisure tecniche, con l'obiettivo di ridurre significativamente il livello di rischio e migliorare la postura di sicurezza complessiva del sistema target.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; 2025 Salvatore Saitta - Progetto M3 CyberSecurity Epicode per Dott. E. Castelli</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 3: Scansione Finale (Nessus) - Progetto M3 CyberSecurity 2025 Epicode - Salvatore Saitta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .content-section, .results-section, .comparison-section, .conclusion-section {
+            background-color: #f9fafb;
+            border-left: 4px solid #3b82f6; 
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .conclusion-section, .final-conclusion-section { 
+            background-color: #eff6ff; 
+            border-left-color: #10b981; 
+        }
+        .nav-button {
+            @apply inline-block bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-colors duration-300 shadow-sm mr-2 mb-2;
+        }
+        .screenshot-image {
+            border: 1px solid #e5e7eb; 
+            border-radius: 8px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .hero-image-final { 
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 8px;
+            background-color: #e5e7eb;
+            padding: 10px;
+             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        table {
+            @apply min-w-full divide-y divide-gray-200 mt-4;
+        }
+        thead {
+            @apply bg-gray-50;
+        }
+        th {
+            @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        }
+        td {
+            /* Rimosso whitespace-nowrap per permettere a capo nelle celle */
+            @apply px-6 py-4 text-sm text-gray-900 bg-white;
+        }
+        tbody tr:nth-child(odd) td {
+            @apply bg-gray-50;
+        }
+        .justified-text p, .justified-text ul, .justified-text ol, .justified-text li {
+            @apply text-justify;
+        }
+         .table-description-cell { 
+            @apply text-justify whitespace-normal; 
+        }
+        .status-risolta {
+            @apply text-green-600 font-semibold;
+        }
+        .status-mitigata { 
+            @apply text-orange-500 font-semibold;
+        }
+        .status-presente { 
+            @apply text-red-600 font-semibold;
+        }
+        .severity-critical { @apply text-red-700 font-bold; }
+        .severity-high { @apply text-red-500 font-semibold; }
+        .severity-medium { @apply text-yellow-500 font-semibold; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 leading-relaxed">
+
+    <header class="bg-green-600 text-white p-6 shadow-lg"> 
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold text-center">Fase 3: Verifica Finale & Risultati (con Nessus Essentials)</h1>
+            <p class="text-lg text-center mt-1">Progetto M3 CyberSecurity 2025 Epicode - Dott. Edoardo Castelli</p>
+            <p class="text-md text-center mt-1">Autore: Salvatore Saitta</p>
+        </div>
+    </header>
+
+    <nav class="container mx-auto p-4 my-4 text-center">
+        <a href="index.html" class="nav-button">Torna alla Home</a>
+        <a href="scansione_iniziale.html" class="nav-button">Vai alla Fase 1: Scansione Iniziale</a>
+        <a href="remediation.html" class="nav-button">Vai alla Fase 2: Remediation</a>
+    </nav>
+
+    <main class="container mx-auto p-6">
+
+        <section id="premessa-fase3" class="content-section justified-text">
+            <h2 class="text-2xl font-semibold mb-4 text-green-700">1. Risultati della Scansione Finale Post-Remediation (Nessus)</h2>
+            <div class="space-y-3 text-md">
+                <p>Dott. Castelli, siamo giunti al momento clou, quello del "verdetto finale"! ✨ Dopo aver analizzato il nostro sistema di test Metasploitable 2 (utilizzando Nessus Essentials) e aver implementato una serie di "upgrade di sicurezza" mirati , è ora di sottoporlo al "controllo qualità".</p>
+                <p>In <a href="reportfinale.html" style="color: blue;">reportfinale.html</a>, le presento i risultati della seconda e ultima scansione con Nessus. L'obiettivo? Semplice ma cruciale: verificare con dati alla mano se le nostre "cure" sono state efficaci e se siamo riusciti a rendere questo ambiente di test un po' più corazzato. Per un confronto equo, ho usato esattamente la stessa policy di scansione ("Basic Network Scan") e lo stesso strumento (Nessus Essentials) della prima analisi. È un po' come fare il "prima e dopo" di una ristrutturazione importante: speriamo che il "dopo" sia decisamente meglio! Vediamo subito cosa ci dicono i sensori! 📊</p>
+            </div>
+        </section>
+
+        <section id="risultati-scansione-finale" class="results-section justified-text">
+
+                
+
+        <section id="conclusioni-finali-esercizio" class="final-conclusion-section justified-text">
+            <h2 class="text-2xl font-semibold mb-4 text-green-700">Conclusioni Finali dell'Esercizio</h2>
+            <div class="space-y-3 text-md">
+                <p>Ebbene sì, Dott. Castelli, possiamo festeggiare! 🥂 I risultati della scansione finale con Nessus Essentials parlano chiaro: il nostro piano di "ristrutturazione della sicurezza" ha dato i suoi frutti! Come avrà notato dai grafici e dalle tabelle comparative, le "spie rosse" delle vulnerabilità più gravi si sono notevolmente ridotte. Le quattro "aree critiche" che avevamo preso di mira (NFS, rexecd, VNC e la Bind Shell) sono state neutralizzate o la loro pericolosità è stata drasticamente ridimensionata. Un successo che dimostra come interventi mirati possano fare una grande differenza!</p>
+                <p>Per la nostra startup miliardaria, Dott. Castelli, questo tipo di approccio proattivo e meticoloso è oro colato. Dimostra che non solo individuiamo i rischi, ma sappiamo anche come affrontarli con competenza, proteggendo ciò che conta di più: i nostri dati, la nostra reputazione e la fiducia dei nostri clienti. Questo esercizio, seppur su un ambiente di test, riflette la serietà e la competenza che mettiamo nel blindare le nostre infrastrutture reali.</p>
+                <p>Personalmente, questa "missione Metasploitable" è stata un incredibile campo di addestramento. Affrontare le sfide di un sistema datato e volutamente complesso mi ha permesso di affinare capacità di analisi, problem-solving e quella meticolosità tecnica che ritengo fondamentali – competenze che non vedo l'ora di mettere al servizio dei progetti innovativi e ambiziosi della nostra azienda.</p>
+                <p>E c'è un altro aspetto, Dott. Castelli, che questa esperienza ha ulteriormente rafforzato in me, un principio che guida da sempre il mio impegno sia professionale che personale: la potenza e l'importanza del mondo Free and Open Source Software (FOSS). Sono convinto che <strong>la cybersecurity nel suo complesso abbia un enorme debito di gratitudine verso la filosofia FOSS.</strong> È grazie a questa apertura che abbiamo strumenti potenti come Parrot OS (basato su Debian, un pilastro FOSS) e che esistono alternative valide e potenti per la scansione delle vulnerabilità. Anche se in questo specifico caso abbiamo utilizzato Nessus Essentials per la sua stabilità e diffusione, il principio di accessibilità e condivisione della conoscenza promosso dal FOSS rimane un faro. Il FOSS <strong>promuove un accesso incredibilmente libero alla conoscenza, offrendo a chiunque – indipendentemente dalle risorse – la preziosa possibilità di studiare, sperimentare, sbagliare e imparare da tecnologie complesse.</strong> È un motore potentissimo per la crescita individuale e collettiva.</p>
+                <p>Come lei sa, sono un fervente attivista FOSS, sia quando mi trovo a disegnare nuovi progetti, sia quando ho il privilegio di formare altri professionisti. È proprio questa passione per la condivisione e l'accessibilità che mi ha spinto a scegliere un tono un po' meno "accademico" e più diretto per le parti narrative di questo progetto. <strong>L'idea di fondo è semplice: se la conoscenza e gli strumenti per la sicurezza possono e devono essere accessibili a tutti grazie al FOSS, allora anche il modo in cui ne parliamo dovrebbe sforzarsi di essere il più chiaro e 'amichevole' possibile.</strong> Ho pensato che, con un contenuto tecnico già di per sé denso, rendere più scorrevoli le introduzioni e le conclusioni potesse aiutare chiunque, anche un CEO visionario ma giustamente oberato come lei, a cogliere rapidamente il messaggio e il valore del lavoro svolto. Spero sinceramente che questa scelta stilistica, che riflette il mio "mood" e la mia filosofia, sia stata di suo gradimento e abbia reso l'intero percorso più comprensibile e, perché no, anche un pizzico più piacevole. Credo fermamente che questo spirito FOSS, basato sulla trasparenza e sulla volontà di rendere la tecnologia più democratica e sicura, sia una leva fondamentale per il futuro.</p>
+                <p>Grazie ancora per l'opportunità di mettermi alla prova con questo esercizio! Sono entusiasta e pronto per le prossime sfide che la nostra startup vorrà affidarmi, portando con me questo bagaglio di esperienze e questa visione.</p>
+            </div>
+        </section>
+        
+        <section class="my-8 text-center">
+            <img src="assets/images/conclusiva_parrot_openvas_check.png" alt="Tributo a FOSS, Parrot OS e strumenti di sicurezza con segno di spunta verde" class="mx-auto my-6 hero-image-final">
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; 2025 Salvatore Saitta - Progetto M3 CyberSecurity Epicode per Dott. E. Castelli</p>
+    </footer>
+
+</body>
+</html>

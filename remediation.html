@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 2: Remediation (Nessus) - Progetto M3 CyberSecurity 2025 Epicode - Salvatore Saitta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .content-section, .remediation-step, .conclusion-section {
+            background-color: #f9fafb;
+            border-left: 4px solid #3b82f6; 
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .conclusion-section {
+            background-color: #eff6ff; 
+            border-left-color: #10b981; 
+        }
+        .nav-button {
+            @apply inline-block bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-colors duration-300 shadow-sm mr-2 mb-2;
+        }
+        .screenshot-image {
+            border: 1px solid #e5e7eb; 
+            border-radius: 8px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .code-block {
+            background-color: #1f2937; 
+            color: #d1d5db; 
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto; 
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .code-block pre {
+            margin: 0;
+        }
+        .justified-text p, .justified-text ul, .justified-text ol, .justified-text li {
+            @apply text-justify;
+        }
+        .inline-theme-image { 
+            max-width: 150px; 
+            float: right; 
+            margin-left: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 leading-relaxed">
+
+    <header class="bg-amber-500 text-white p-6 shadow-lg"> 
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold text-center">Fase 2: Piano di Remediation & Interventi</h1>
+            <p class="text-lg text-center mt-1">Progetto M3 CyberSecurity 2025 Epicode - Dott. Edoardo Castelli</p>
+            <p class="text-md text-center mt-1">Autore: Salvatore Saitta</p>
+        </div>
+    </header>
+
+    <nav class="container mx-auto p-4 my-4 text-center">
+        <a href="index.html" class="nav-button">Torna alla Home</a>
+        <a href="scansione_iniziale.html" class="nav-button">Vai alla Fase 1: Scansione Iniziale</a>
+        <a href="scansione_finale.html" class="nav-button">Vai alla Fase 3: Scansione Finale</a>
+    </nav>
+
+    <main class="container mx-auto p-6">
+
+        <section id="premessa-fase2" class="content-section justified-text">
+            <h2 class="text-2xl font-semibold mb-4 text-amber-600">Premessa agli Interventi di Remediation</h2>
+            <div class="space-y-3 text-md">
+                <p>Rieccoci all'opera, Dott. Castelli! 💪 Nel report precedente <a href="reportiniziale.html" style="color: blue;">Reportiniziale.html</a>, la scansione con Nessus Essentials ha confermato che Metasploitable 2, il nostro sistema di test, presentava diverse criticità di sicurezza. Ora è il momento di passare all'azione e applicare le contromisure!</p>
+                <p>In questo documento, la porto nel "dietro le quinte" delle operazioni di hardening. Ho selezionato quattro "aree di intervento prioritarie", basandomi sui risultati di Nessus e sugli obiettivi dell'esercizio:</p>
+                <ol class="list-decimal list-inside ml-4 space-y-1">
+                </ol>
+                <p>Per ognuna di queste, le mostrerò come ho prima "spiato" la situazione sulla macchina Metasploitable 2, poi applicato la "cura" più adatta e infine verificato che la "medicina" avesse fatto effetto. L'ho scritto pensando a lei, Dott. Castelli: so che apprezza la chiarezza e la concretezza. Come da traccia, per una di queste falle (VNC), ho utilizzato il firewall `iptables` come principale strumento di mitigazione. Andiamo a vedere come abbiamo rinforzato le difese! 🛡️</p>
+            </div>
+        </section>
+
+        <section id="remediation-nfs" class="remediation-step">
+            <h2 class="text-2xl font-semibold mb-4 text-amber-600">1. Remediation:</h2>
+
+
+                <div class="space-y-3 text-md">
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        Ho dato una bella lucidata al sistema e ho preparato alcuni screenshot freschi freschi che ti mostrano un assaggio delle magie ✨ che ho compiuto per tappare quelle fastidiose vulnerabilità. Pensa a questi come agli stuzzichini prima di una cena da re! Appetitosi, vero? 😉
+
+                            Ora, so cosa stai pensando: "Voglio TUTTA la torta, non solo la ciliegina!" E hai ragione! Il report completo, zeppo di ogni singolo screenshot e dettaglio succulento delle mie prodezze, è pronto per essere svelato.
+                            
+                            Per sbloccare questo tesoro di informazioni e vedere l'opera completa, c'è solo un piccolo, simpatico "contributo per la causa della genialità" da considerare. Niente di che, solo quanto basta per un caffè extra forte ☕ e magari un biscottino per il mio fido assistente-codice.
+                            
+                            Fammi sapere quando sei pronto a fare questo piccolo gesto di apprezzamento, e appena il mio radar di "buone azioni ricevute" farà PLING!, il report completo volerà da te più veloce di un byte in autostrada! 🚀
+                            
+                            Che dici, facciamo questo scambio di favori? Tu mi fai sorridere e io ti rivelo tutti i segreti della fortezza impenetrabile che ho costruito! 😄.</li>
+                </div>
+    
+                <img src="assets/images/rm2.png" alt="Screenshot: inetd.conf per bind shell prima" class="screenshot-image">
+                <img src="assets/images/rm3.png" alt="Screenshot: inetd.conf per bind shell prima" class="screenshot-image">
+                <img src="assets/images/rm4.png" alt="Screenshot: inetd.conf per bind shell prima" class="screenshot-image">
+                <img src="assets/images/rm5.png" alt="Screenshot: inetd.conf per bind shell prima" class="screenshot-image">
+                <img src="assets/images/rm6.png" alt="Screenshot: inetd.conf per bind shell prima" class="screenshot-image">
+                <img src="assets/images/rm7.png" alt="Screenshot: inetd.conf per bind shell prima" class="screenshot-image">
+                <img src="assets/images/rm8.png" alt="Screenshot: inetd.conf per bind shell prima" class="screenshot-image">
+                <img src="assets/images/rm9.png" alt="Screenshot: inetd.conf per bind shell prima" class="screenshot-image">
+                <img src="assets/images/rm10.png" alt="Screenshot: inetd.conf per bind shell prima" class="screenshot-image">
+                <img src="assets/images/rm11.png" alt="Screenshot: inetd.conf per bind shell prima" class="screenshot-image">
+
+                <section id="conclusioni-fase2" class="conclusion-section justified-text">
+            <h2 class="text-2xl font-semibold mb-4 text-green-700">Conclusioni della Fase di Remediation</h2>
+            <div class="space-y-3 text-md">
+                <p>Missione compiuta (per ora!), Dott. Castelli! Se ha seguito le varie "operazioni speciali" di questo report, avrà visto che non siamo stati con le mani in mano. Abbiamo lavorato di lima e scalpello digitale per:</p>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Mettere un po' di lucchetti seri alle condivisioni NFS, limitando l'accesso e i permessi.</li>
+                    <li>Dare il benservito al vecchio e insicuro rexecd, disabilitandolo tramite la sua configurazione di avvio.</li>
+                    <li>Cambiare la combinazione della cassaforte VNC e, già che c'eravamo, abbiamo messo una guardia armata (il firewall `iptables`!) a proteggerla, permettendo l'accesso solo da postazioni fidate.</li>
+                    <li>Sigillare quella fastidiosa Bind Shell che ci spiava dalla porta 1524, eliminando la sua configurazione da `inetd.conf`.</li>
+                </ul>
+                <p>Ogni "cerotto" che abbiamo applicato è stato controllato per essere sicuri che facesse il suo dovere. È come mettere a punto uno dei nostri bolidi prima di una gara importante: ogni dettaglio conta!</p>
+                <p>Certo, queste sono solo alcune delle "cure" che il nostro Metasploitable 2 richiederebbe, ma sono un passo concreto verso una maggiore sicurezza. Ora, però, Dott. Castelli, viene il bello: il "test drive" finale! Nel prossimo documento, "scansione_finale.html", vedremo se i nostri sforzi hanno davvero ridotto i rischi e se la nostra "macchina da test" è ora un po' meno appetibile per i malintenzionati. La suspense è alta! 🤞</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; 2025 Salvatore Saitta - Progetto M3 CyberSecurity Epicode per Dott. E. Castelli</p>
+    </footer>
+
+</body>
+</html>

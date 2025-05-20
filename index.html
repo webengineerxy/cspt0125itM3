@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetto M3 CyberSecurity 2025 Epicode - Salvatore Saitta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .content-section {
+            background-color: #f9fafb; /* Light gray background for sections */
+            border-left: 4px solid #3b82f6; /* Blue accent border */
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .conclusion-section {
+            background-color: #eff6ff; /* Lighter blue for conclusions */
+            border-left: 4px solid #10b981; /* Green accent for positive conclusions */
+        }
+        .nav-link {
+            @apply block sm:inline-block text-center sm:text-left bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 shadow-md mb-4 sm:mb-0 sm:mr-4;
+        }
+        .hero-image {
+            max-height: 400px;
+            object-fit: contain; 
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            background-color: #e5e7eb; 
+            padding: 10px; 
+        }
+        .justified-text p {
+            @apply text-justify;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 leading-relaxed">
+
+    <header class="bg-blue-600 text-white p-8 shadow-lg">
+        <div class="container mx-auto">
+            <h1 class="text-4xl font-bold text-center">Progetto M3 CyberSecurity 2025 Epicode</h1>
+            <p class="text-xl text-center mt-2">Hardening di Metasploitable 2 - Per il CEO Dott. Edoardo Castelli</p>
+            <p class="text-lg text-center mt-1">Autore: Salvatore Saitta</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6">
+        
+        <section class="my-8 text-center">
+            <img src="assets/images/copertina_vulnerability_detected.png" alt="Vulnerabilità Rilevata - Schermo PC con Alert Rosso" class="mx-auto my-6 hero-image">
+        </section>
+
+        <section id="premessa-generale" class="my-12 content-section justified-text">
+            <h2 class="text-3xl font-semibold mb-6 text-blue-700">Premessa Generale del Progetto</h2>
+            <div class="space-y-4 text-lg">
+                <p>Dott. Castelli, buongiorno!</p>
+                <p>Spero di trovarla al meglio tra un meeting miliardario e l'altro! Ho preparato questo progetto che considero un po' come il "check-up completo" e il successivo "piano di rinforzo" per uno dei nostri prototipi di sicurezza. Ho preso la nostra fida macchina di test, Metasploitable 2 (una sorta di "sparring partner" che ci aiuta a tenerci in forma contro le minacce), l'ho messa sotto la lente d'ingrandimento del mio Parrot OS e ho utilizzato <strong>Nessus Essentials</strong>, uno strumento leader nel vulnerability assessment, per una ricognizione approfondita, dato che l'installazione del suo diretto concorrente open source (OpenVAS/GVM) si è rivelata al momento problematica su Parrot OS.</p>
+                <p>L'obiettivo? Capire da dove partiamo, fare una "fotografia" del suo stato di salute attuale, vedere quante "porte aperte involontariamente" o "finestre un po' arrugginite" riusciamo a individuare, e poi, naturalmente, applicare le giuste contromisure per blindare il tutto. Questo percorso in tre fasi è fondamentale per pianificare una strategia di "messa a punto" efficace e dimostrare come la sicurezza proattiva sia un pilastro per la nostra startup.</p>
+                <p>Ho cercato di rendere le parti narrative di questo progetto un po' più discorsive del solito. Sa, Dott. Castelli, i dettagli tecnici sono cruciali e li troverà ben documentati; qui, però, punto a raccontarle la storia dietro i numeri, in modo che anche lei, tra un impegno e l'altro, possa cogliere subito il succo della questione e l'impatto del nostro lavoro. Spero apprezzerà questo approccio! Cominciamo l'esplorazione!</p>
+            </div>
+        </section>
+
+        <section id="struttura-progetto" class="my-12">
+            <h2 class="text-3xl font-semibold mb-8 text-center text-blue-700">Struttura del Progetto e Navigazione</h2>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="scansione_iniziale.html" class="nav-link">Fase 1: Scansione Iniziale & Analisi Rischi (Nessus)</a>
+                <a href="remediation.html" class="nav-link">Fase 2: Piano di Remediation & Interventi</a>
+                <a href="scansione_finale.html" class="nav-link">Fase 3: Verifica Finale & Risultati (Nessus)</a>
+            </div>
+        </section>
+
+        <section id="conclusioni-generali" class="my-12 content-section conclusion-section justified-text">
+            <h2 class="text-3xl font-semibold mb-6 text-green-700">Conclusioni Generali del Progetto</h2>
+            <div class="space-y-4 text-lg">
+                <p>Ebbene sì, Dott. Castelli, possiamo festeggiare! 🥂 Il percorso che abbiamo intrapreso attraverso l'analisi e l'hardening di Metasploitable 2 ha dato i suoi frutti, come potrà vedere nel dettaglio nelle sezioni finali. Le "spie rosse" delle vulnerabilità più gravi si sono notevolmente ridotte, dimostrando che un approccio metodico e competente può trasformare anche un sistema "groviera" in una postazione decisamente più robusta.</p>
+                <p>Per la nostra startup miliardaria, Dott. Castelli, questo tipo di mentalità proattiva verso la sicurezza non è solo auspicabile, è essenziale. Proteggere i nostri asset digitali, la fiducia dei nostri clienti e la nostra reputazione innovativa è un investimento che paga sempre. Questo esercizio, seppur su un ambiente di test, riflette la serietà e la competenza che mettiamo nel blindare le nostre infrastrutture reali.</p>
+                <p>Personalmente, questa "missione Metasploitable" è stata un incredibile campo di addestramento. Affrontare le sfide di un sistema datato mi ha permesso di affinare capacità di analisi, problem-solving e quella meticolosità tecnica che ritengo fondamentali – competenze che non vedo l'ora di mettere al servizio dei progetti innovativi e ambiziosi della nostra azienda.</p>
+                <p>E c'è un altro aspetto, Dott. Castelli, che questa esperienza ha ulteriormente rafforzato in me, un principio che guida da sempre il mio impegno sia professionale che personale: la potenza e l'importanza del mondo Free and Open Source Software (FOSS). Sono convinto che <strong>la cybersecurity nel suo complesso abbia un enorme debito di gratitudine verso la filosofia FOSS.</strong> È grazie a questa apertura che abbiamo strumenti potenti come Parrot OS (basato su Debian, un pilastro FOSS) e che esistono alternative valide e potenti per la scansione delle vulnerabilità. Anche se in questo specifico caso abbiamo utilizzato Nessus Essentials per la sua stabilità e diffusione, il principio di accessibilità e condivisione della conoscenza promosso dal FOSS rimane un faro. Il FOSS <strong>promuove un accesso incredibilmente libero alla conoscenza, offrendo a chiunque – indipendentemente dalle risorse – la preziosa possibilità di studiare, sperimentare, sbagliare e imparare da tecnologie complesse.</strong> È un motore potentissimo per la crescita individuale e collettiva.</p>
+                <p>Come lei sa, sono un fervente attivista FOSS, sia quando mi trovo a disegnare nuovi progetti, sia quando ho il privilegio di formare altri professionisti. È proprio questa passione per la condivisione e l'accessibilità che mi ha spinto a scegliere un tono un po' meno "accademico" e più diretto per le parti narrative di questo progetto. <strong>L'idea di fondo è semplice: se la conoscenza e gli strumenti per la sicurezza possono e devono essere accessibili a tutti grazie al FOSS, allora anche il modo in cui ne parliamo dovrebbe sforzarsi di essere il più chiaro e 'amichevole' possibile.</strong> Ho pensato che, con un contenuto tecnico già di per sé denso, rendere più scorrevoli le introduzioni e le conclusioni potesse aiutare chiunque, anche un CEO visionario ma giustamente oberato come lei, a cogliere rapidamente il messaggio e il valore del lavoro svolto. Spero sinceramente che questa scelta stilistica, che riflette il mio "mood" e la mia filosofia, sia stata di suo gradimento e abbia reso l'intero percorso più comprensibile e, perché no, anche un pizzico più piacevole. Credo fermamente che questo spirito FOSS, basato sulla trasparenza e sulla volontà di rendere la tecnologia più democratica e sicura, sia una leva fondamentale per il futuro.</p>
+                <p>Grazie ancora per l'opportunità di mettermi alla prova con questo esercizio! Sono entusiasta e pronto per le prossime sfide che la nostra startup vorrà affidarmi, portando con me questo bagaglio di esperienze e questa visione.</p>
+            </div>
+        </section>
+        
+        <section class="my-8 text-center">
+            <img src="assets/images/conclusiva_parrot_openvas_check.png" alt="Tributo a Parrot OS, OpenVAS e FOSS con segno di spunta verde" class="mx-auto my-6 hero-image">
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <p>&copy; 2025 Salvatore Saitta - Progetto M3 CyberSecurity Epicode per Dott. E. Castelli</p>
+    </footer>
+
+</body>
+</html>
